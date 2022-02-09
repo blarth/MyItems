@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import SignUp from "./pages/SignUp";
 
 
 
@@ -10,7 +11,7 @@ export default function App() {
     <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignUp />} />
+            <Route path="/sign-up" element={<SignUp />} />
           </Routes>
         </BrowserRouter>
     </AuthProvider>
