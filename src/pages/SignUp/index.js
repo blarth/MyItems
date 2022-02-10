@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import api from "../../services/api";
 import styled from 'styled-components'
-import {  Form, Input, Button, StyledLink } from "../../components/formsComponents";
+import {  Form, Input, Button } from "../../components/formsComponents";
 
 export default function SignUp() {
 
@@ -16,13 +16,13 @@ export default function SignUp() {
       }
     
       async function handleSubmit(e) {
-          
+        
+        e.preventDefault();
         if(formData.password !== formData.confirmpassword){
             alert("Passwords should match")
             return
         }
-        e.preventDefault();
-        delete formData.confirmpassword
+        setFormData({...formData, confirmpassword : ""})
         
         try {
             setIsLoading(true);
@@ -30,7 +30,7 @@ export default function SignUp() {
               ...formData
             }).then(() => {
                 setIsLoading(false);
-                navigate("/");
+                navigate("/sign-in");
               })
             
         } catch (error) {
