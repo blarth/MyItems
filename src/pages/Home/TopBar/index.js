@@ -4,8 +4,8 @@ export default function TopBar(){
         <Container>
         <h1>MyItems</h1>
         <div>
-            <span>Cart</span>
-            <span>Logout</span>
+            <span><ion-icon name="cart"></ion-icon></span>
+            <span><ion-icon name="log-out"></ion-icon></span>
         </div>
         </Container>
     )
