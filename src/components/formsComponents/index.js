@@ -1,13 +1,13 @@
 import Button from "./Button";
-
+import Label from "./Label";
 import Form from "./Form";
 import Input from "./Input";
-import StyledLink from "./StyledLink";
+
 
 export {
 
   Form,
   Input,
   Button,
-  StyledLink
+  Label
 }

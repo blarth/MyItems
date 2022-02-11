@@ -11,10 +11,16 @@ function signUp(body) {
 
   return promise;
 }
+function signIn(body) {
+  const promise = axios.post(`${BASE_URL}/sign-in`, body);
+
+  return promise;
+}
 
 
   const api = {
-    signUp
+    signUp,
+    signIn,
   }
   
   export default api;
