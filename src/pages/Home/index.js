@@ -1,4 +1,4 @@
-import TopBar from "./TopBar";
+import TopBar from "../../components/TopBar";
 import React, { useState } from 'react';
 import {Frame,Gallery,Card,Image,Bottombar,Description} from "./style"
 
@@ -55,7 +55,7 @@ return(
         <h1>Olá, Fulano</h1>
         <Gallery>
             {items.map((item)=>(
-                <Card name={item.isSelected.toString()} id={item.id} onClick={(e)=>handleClick(e)}>
+                <Card key={item.id}name={item.isSelected.toString()} id={item.id} onClick={(e)=>handleClick(e)}>
                     <Image src={item.image}></Image>
                     <Description>
                         <aside>
