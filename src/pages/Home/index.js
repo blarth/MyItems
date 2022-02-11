@@ -1,6 +1,7 @@
 import TopBar from "../../components/TopBar";
 import React, { useState } from 'react';
-import {Frame,Gallery,Card,Image,Bottombar,Description} from "./style"
+import {Frame,Gallery,Image,Bottombar,Description} from "./style"
+import Card from "../../components/Card"
 
 let items =[
     {
@@ -54,24 +55,32 @@ return(
     <Frame>
         <h1>Olá, Fulano</h1>
         <Gallery>
-            {items.map((item)=>(
-                <Card key={item.id}name={item.isSelected.toString()} id={item.id} onClick={(e)=>handleClick(e)}>
-                    <Image src={item.image}></Image>
-                    <Description>
-                        <aside>
-                            <h1>{item.name}</h1>
-                            <h2>{item.game}</h2>
-                        </aside>
-                        <span>R$ {item.value}</span>
-                    </Description> 
-                </Card>
-               
+            {items.map((item,i)=>( 
+            <Card 
+                key={i} 
+                id={item.id} 
+                name={item.name} 
+                handleClick={handleClick} 
+                value={item.value} 
+                image={item.image} 
+                isSelected={item.isSelected}
+            />
             ))}
-            
         </Gallery>
 
     </Frame>
-    {cart===0?<Bottombar><h2>Você ainda selecionou nenhum item</h2></Bottombar>:<Bottombar> <div><ion-icon name="cart"></ion-icon> <p>Valor do Carrinho</p> </div> <span>R$ {cart}</span> </Bottombar>}
+    {cart===0?
+    <Bottombar>
+        <h2>Você ainda selecionou nenhum item</h2>
+    </Bottombar>
+    :
+    <Bottombar>
+        <div>
+            <ion-icon name="cart"></ion-icon>
+            <p>Valor do Carrinho</p> 
+        </div> 
+        <span>R$ {cart}</span> 
+    </Bottombar>}
     
     </>
 
