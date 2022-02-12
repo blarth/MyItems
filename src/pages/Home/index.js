@@ -7,7 +7,7 @@ import axios from "axios"
 
 
 export default function HomePage(){
-    const [items,setItems]=useState([]);
+    const [itemsA,setItems]=useState([]);
     const [cart,setCart] = useState(0);
     let itemAux=[]
 
@@ -20,16 +20,17 @@ export default function HomePage(){
     }, []);
     function handleClick(e){
 
-        let newArr = items.map(obj => {
-            if (obj.id === e.target.parentNode.id ){
+        let newArr = itemsA.map(obj => {
+            if (obj._id === e.target.parentNode.id ){
               return {...obj, isSelected: !obj.isSelected};
             }
             return obj;
         });
-        items=newArr;
         let sum=0;
-        items.map((item)=>{if(item.isSelected){sum+=parseFloat(item.value)}})
+        newArr.map((item)=>{if(item.isSelected){sum+=parseFloat(item.price)}})
         setCart(sum)
+        setItems(newArr)
+        
     }
     
 return(
@@ -38,7 +39,7 @@ return(
     <Frame>
         <h1>Olá, Fulano</h1>
         <Gallery>
-            {items.length>0?items.map((item,i)=>( 
+            {itemsA.length>0?itemsA.map((item,i)=>( 
                 
             <Card 
                 key={i} 
@@ -65,7 +66,7 @@ return(
             <ion-icon name="cart"></ion-icon>
             <p>Valor do Carrinho</p> 
         </div> 
-        <span>R$ {cart}</span> 
+        <span>R$ {cart.toFixed(2)}</span> 
     </Bottombar>}
     
     </>
