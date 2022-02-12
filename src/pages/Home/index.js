@@ -1,52 +1,36 @@
 import TopBar from "../../components/TopBar";
-import React, { useState } from 'react';
-import {Frame,Gallery,Image,Bottombar,Description} from "./style"
+import React, { useState, useEffect } from 'react';
+import {Frame,Gallery,Bottombar} from "./style"
 import Card from "../../components/Card"
+import axios from "axios"
 
-let items =[
-    {
-        id:"hsdajhdasjk",
-        name:"Espada",
-        value:"30",
-        game:"Minecraft",
-        image:"https://i.pinimg.com/236x/52/b0/97/52b097b9eef0845f6ab2f784dfb25144.jpg",
-        isSelected:false
-    },
-    {
-        id:"hsdajhdsdffsdasdfasjk",
-        name:"Espada",
-        value:"30",
-        game:"Minecraft",
-        image:"https://i.pinimg.com/236x/52/b0/97/52b097b9eef0845f6ab2f784dfb25144.jpg",
-        isSelected:false
-    },
-    {
-        id:"hsdajfdsdfhdasjk",
-        name:"Espada",
-        value:"30",
-        game:"Minecraft",
-        image:"https://i.pinimg.com/236x/52/b0/97/52b097b9eef0845f6ab2f784dfb25144.jpg",
-        isSelected:false
-    },
 
-]
 
 export default function HomePage(){
+    const [itemsA,setItems]=useState([]);
     const [cart,setCart] = useState(0);
+    let itemAux=[]
 
-    
+    useEffect(() => {
+        const promisse=axios.get("https://myitems-back.herokuapp.com/items");
+        promisse.then((response)=> {response.data.map((item)=>itemAux.push({...item,isSelected:false}));setItems(itemAux)})
+        
+        promisse.catch((e)=>console.log(e))
+        
+    }, []);
     function handleClick(e){
 
-        let newArr = items.map(obj => {
-            if (obj.id === e.target.parentNode.id ){
+        let newArr = itemsA.map(obj => {
+            if (obj._id === e.target.parentNode.id ){
               return {...obj, isSelected: !obj.isSelected};
             }
             return obj;
         });
-        items=newArr;
         let sum=0;
-        items.map((item)=>{if(item.isSelected){sum+=parseFloat(item.value)}})
+        newArr.map((item)=>{if(item.isSelected){sum+=parseFloat(item.price)}})
         setCart(sum)
+        setItems(newArr)
+        
     }
     
 return(
@@ -55,17 +39,20 @@ return(
     <Frame>
         <h1>Olá, Fulano</h1>
         <Gallery>
-            {items.map((item,i)=>( 
+            {itemsA.length>0?itemsA.map((item,i)=>( 
+                
             <Card 
                 key={i} 
-                id={item.id} 
+                id={item._id} 
                 name={item.name} 
                 handleClick={handleClick} 
-                value={item.value} 
+                value={item.price} 
                 image={item.image} 
                 isSelected={item.isSelected}
             />
-            ))}
+
+            )
+            ):<h1>Carregando</h1>}
         </Gallery>
 
     </Frame>
@@ -79,7 +66,7 @@ return(
             <ion-icon name="cart"></ion-icon>
             <p>Valor do Carrinho</p> 
         </div> 
-        <span>R$ {cart}</span> 
+        <span>R$ {cart.toFixed(2)}</span> 
     </Bottombar>}
     
     </>
