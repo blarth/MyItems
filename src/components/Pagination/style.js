@@ -13,6 +13,10 @@ button+button{
 `
 
 export const Button=styled.button`
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 2px 5px;
 font-size: 16px;
 ${props => (props.active) && css ` 
 :focus{
@@ -23,7 +27,8 @@ background: none;
 font-weight: 900;
 
 `}
-
-    width: 40px;
+    border-radius: 2px;
+    width: auto;
+    height: 25px;
     border:none;
 `

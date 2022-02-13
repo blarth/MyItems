@@ -15,6 +15,9 @@ display: flex;
 flex-wrap: wrap;
 align-items: center;
 justify-content: space-around;
+div+div{
+    margin-left: 5px;
+}
 
 `
 export const Bottombar = styled.div`

@@ -1,8 +1,21 @@
 import { Container } from "./style"
-import {useNavigate} from "react-router-dom"
+import useAuth from "../../hooks/useAuth";
+import {useNavigate} from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function TopBar({auth}){
+    const {login} =useAuth()
     const navigate= useNavigate();
+    function logout(){
+        let confirm =window.confirm("Você deseja mesmo sair?")
+        if(confirm){
+            login([])
+            alert("Até logo ;<");
+            localStorage.clear();
+            navigate("/sign-in");
+        }
+        else{return}
 
+    }
 
     return(
         <Container>
@@ -10,14 +23,17 @@ export default function TopBar({auth}){
         <div>
             {auth==null?
             <>
-             <span><ion-icon onClick={()=>{navigate("/sign-in")}} name="log-in"></ion-icon></span>
-             <span onClick={()=>{navigate("/sign-up")}} >Registrar-se</span>
-            </>
+            <span onClick={()=>{navigate("/")}}>Home</span>
+            <span onClick={()=>{navigate("/sign-in")}}>Login</span>
+            <span onClick={()=>{navigate("/sign-up")}}>Register</span>
+            <span onClick={()=>{navigate("/cart")}}>Cart</span>
             
+            </>
             :
             <>
-            <span><ion-icon name="cart"></ion-icon></span>
-            <span><ion-icon name="log-out"></ion-icon></span>
+            <span onClick={()=>{navigate("/")}}>Home</span>
+            <span onClick={()=>{navigate("/cart")}}>Cart</span>
+            <span onClick={()=>logout()}>Logout</span>
             </>
             }
 
