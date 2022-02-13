@@ -25,6 +25,14 @@ function deleteItem(e){
     setMyCart(newArray)
     console.log(newArray)
 }
+function sendCArt(){
+    if(auth){
+        alert("vc ta logado")
+    }
+    else{
+        alert("vc precisa estar logado para comprar")
+    }
+}
     
 return(
     <>
@@ -45,7 +53,7 @@ return(
         )}
         <BottomFrame>
             {/* <button onClick={()=>setMyCart([])}>Clear Cart</button> */}
-            <button>Finalizar Compra</button>
+            <button onClick={()=>sendCArt()}>Finalizar Compra</button>
         </BottomFrame>
     </Framed>
     <BottomBar value={valueCart}></BottomBar>

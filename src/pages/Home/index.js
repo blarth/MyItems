@@ -24,7 +24,11 @@ export default function HomePage(){
     const [total,setTotal]=useState(0)
 
     function addAndCompare(input){
-        let verification = cartItems.filter((item)=>item._id===input._id)
+        let verification=0
+        if(cartItems){
+            verification = cartItems.filter((item)=>item._id===input._id)
+        }
+      
         if(verification.length>0){
             itemAux.push({...input,isSelected:true})
         }
@@ -42,7 +46,7 @@ export default function HomePage(){
         setTotal(response.data.total);
         setItems(itemAux)})
         promisse.catch((e)=>console.log(e))
-        cartItems.map((item)=>valueOnCart+=parseFloat(item.price))
+        cartItems&&cartItems.map((item)=>valueOnCart+=parseFloat(item.price))
         setValueCart(valueOnCart)
         }, []);
 
@@ -57,24 +61,24 @@ export default function HomePage(){
         newArr.map((item)=>{if(item.isSelected){sum+=parseFloat(item.price)}})
         setItems(newArr) 
         setMyCart(newArr.filter((item)=>item.isSelected==true))
-        cartItems.map((item)=>valueOnCart+=parseFloat(item.price))
+        cartItems&&cartItems.map((item)=>valueOnCart+=parseFloat(item.price))
         setValueCart(sum)
     }
     
-    function filter(){
-        let searchLowerCase = search.toLocaleLowerCase()
-        let arrayFilter = itemAux.filter((item)=>item.name.toLocaleLowerCase().includes(searchLowerCase))
-        console.log(cartItems)
+    // function filter(){
+    //     let searchLowerCase = search.toLocaleLowerCase()
+    //     let arrayFilter = itemAux.filter((item)=>item.name.toLocaleLowerCase().includes(searchLowerCase))
+    //     console.log(cartItems)
 
-        setItems(arrayFilter)
-    }
+    //     setItems(arrayFilter)
+    // }
 
 return(
     <>
     <TopBar auth={auth}></TopBar>
     <Frame>
-    <input value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Search"></input>
-    <button onClick={()=>filter()}>Search</button>
+    {/* <input value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="Search"></input> */}
+    {/* <button onClick={()=>filter()}>Search</button> */}
         
         <Gallery>
             {itemsA.length>0?itemsA.map((item,i)=>
