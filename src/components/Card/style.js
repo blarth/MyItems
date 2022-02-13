@@ -14,14 +14,12 @@ color:#1D1720;
 h1{
     color:#fff;
     font-weight: 900;
-    font-size: 22px;
-}
-h2{
-    color:#fff;
     font-size: 16px;
+    width: 60%;
 }
 span{
     color:#fff;
+
 }
 
 
@@ -33,12 +31,11 @@ padding: 10px;
 display: flex;
 align-items: center;
 justify-content:space-between;
-aside{
-    width: 70%;
-}
 span{
-    font-size: 28px;
+  
+    font-size: 16px;
     font-weight: 600;
+    
 }
 `
 export const Image=styled.img`

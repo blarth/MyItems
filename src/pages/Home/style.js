@@ -7,7 +7,7 @@ color:#fff;
 padding:20px;
 font-size: 20px;
 padding-top:50px ;
-padding-bottom:40px ;
+padding-bottom:60px ;
 `
 export const Gallery = styled.div`
 width: 100%;
