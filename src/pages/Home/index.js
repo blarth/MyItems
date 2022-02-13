@@ -17,7 +17,7 @@ export default function HomePage(){
     let itemAux=[]
 
     useEffect(() => {
-        const promisse=axios.get("http://localhost:4000/items");
+        const promisse=axios.get("https://myitems-back.herokuapp.com/items");
         promisse.then((response)=> 
         {response.data.map((item)=>itemAux.push({...item,isSelected:false}));
         setItems(itemAux)
