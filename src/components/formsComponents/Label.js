@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 const Label = styled.span`
-margin-bottom: .15rem;
-padding-right: 17rem;
-
+    margin-bottom: .15rem;
+    text-align: left;
+    color: #ffffff;
+    
 `;
 
 
