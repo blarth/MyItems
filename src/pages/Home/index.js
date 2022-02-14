@@ -34,7 +34,7 @@ export default function HomePage(){
 
     useEffect(() => {
         console.log(offset)
-        const promisse=axios.get(`http://localhost:4000/items`);
+        const promisse=axios.get(`https://myitems-back.herokuapp.com/items`);
         promisse.then((response)=> 
         {response.data.map((item)=>addAndCompare(item));
         setTotal(response.data.total);

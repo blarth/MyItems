@@ -1,14 +1,17 @@
 import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import {CartStyledCard, Framed,BottomFrame} from "./style"
 import TopBar from "../../components/TopBar"
 import useAuth from "../../hooks/useAuth";
 import BottomBar from "../../components/BottomBar";
+import api from "../../services/api";
 
 export default function CartPage(){
     const {cartItems,setMyCart}= useCart();
     const [valueCart,setValueCart] = useState(0)
     const {auth} = useAuth();
+    const navigate = useNavigate()
 
     useEffect(() => {
         let sum=0;
@@ -23,11 +26,24 @@ function deleteItem(e){
     newArray.map((item)=>{sum+=parseFloat(item.price)})
     setValueCart(sum);
     setMyCart(newArray)
-    console.log(newArray)
+    
 }
-function sendCArt(){
+async function sendCart(){
     if(auth){
-        alert("Logado")
+        
+        try {
+            
+            const promisse = await api.registerTransaction(cartItems, auth)
+            alert("Compra realizada com sucesso, você será redirecionado para a home")
+            setTimeout(() => {
+                navigate("/")
+            }, 2500)
+            
+        } catch (error) {
+            alert("Tivemos um erro com a sua compra, confira os dados")
+            
+        }
+        
     }
     else{
         alert("Você precisa estar logado para comprar, faça login ou resgistre-se agora")
@@ -38,7 +54,7 @@ return(
     <>
     <TopBar auth={auth}></TopBar>
     <Framed>
-        {cartItems.map((item,i)=>
+        {cartItems?.map((item,i)=>
             <CartStyledCard key={i} id={item._id} >
             <img src={item.image}></img>
             
@@ -52,8 +68,8 @@ return(
             </CartStyledCard>
         )}
         <BottomFrame>
-            {/* <button onClick={()=>setMyCart([])}>Clear Cart</button> */}
-            <button onClick={()=>sendCArt()}>Finalizar Compra</button>
+            <button onClick={()=>setMyCart([])}>Clear Cart</button> 
+            <button onClick={()=>sendCart()}>Finalizar Compra</button>
         </BottomFrame>
     </Framed>
     <BottomBar value={valueCart}></BottomBar>

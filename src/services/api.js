@@ -17,10 +17,17 @@ function signIn(body) {
   return promise;
 }
 
+function registerTransaction(body, token){
+  const config = createConfig(token)
+  const promise = axios.post(`${BASE_URL}/sale`, body , config );
+  
+    return promise
+}
 
   const api = {
     signUp,
     signIn,
+    registerTransaction
   }
   
   export default api;
