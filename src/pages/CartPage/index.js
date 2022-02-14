@@ -27,10 +27,10 @@ function deleteItem(e){
 }
 function sendCArt(){
     if(auth){
-        alert("vc ta logado")
+        alert("Logado")
     }
     else{
-        alert("vc precisa estar logado para comprar")
+        alert("Você precisa estar logado para comprar, faça login ou resgistre-se agora")
     }
 }
     

@@ -1,14 +1,12 @@
-import TopBar from "../../components/TopBar";
-import Card from "../../components/Card"
-import BottomBar from "../../components/BottomBar";
-import Pagination from "../../components/Pagination";
+import { TopBar,Card,BottomBar,Pagination } from '../../components';
 import React, { useState, useEffect } from 'react';
-import {Frame,Gallery,Bottombar} from "./style"
+import {Frame,Gallery} from "./style"
 import axios from "axios"
 import useAuth from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
-
-
+const MAX_ITENS_IN_PAGE=parseInt(10);
+let itemAux=[]
+let valueOnCart=0;
 
 export default function HomePage(){
     const {auth,login} = useAuth();
@@ -16,11 +14,8 @@ export default function HomePage(){
     if(auth!==null){const {token,userId}=auth;}
     const [search,setSearch] = useState('');
     const [offset,setOffset]=useState(parseInt(0));
-    const MAX_ITENS_IN_PAGE=parseInt(10);
     const [itemsA,setItems]=useState([]);
     const [valuecart,setValueCart] = useState(0);
-    let itemAux=[]
-    let valueOnCart=0;
     const [total,setTotal]=useState(0)
 
     function addAndCompare(input){
@@ -41,7 +36,6 @@ export default function HomePage(){
         console.log(offset)
         const promisse=axios.get(`http://localhost:4000/items`);
         promisse.then((response)=> 
-        // {response.data.map((item)=>itemAux.push({...item,isSelected:false}));
         {response.data.map((item)=>addAndCompare(item));
         setTotal(response.data.total);
         setItems(itemAux)})
