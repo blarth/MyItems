@@ -42,10 +42,14 @@ export default function SignUp() {
     
         
       }
+      function handleNavigation(){
+        navigate("/")
+      }
 
   return (
     <>
     <ContainerSignUp>
+        <h4 onClick={handleNavigation}>Home</h4>
         <h4>Create Account</h4>
         <Form onSubmit={handleSubmit}>
         <div className='wrapperLabel'>
