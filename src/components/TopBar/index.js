@@ -15,6 +15,7 @@ export default function TopBar({auth}){
         }
         else{return}
 
+
     }
 
     return(

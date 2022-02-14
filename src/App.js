@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 
 
 
+
 export default function App() {
   
 
@@ -25,5 +26,5 @@ export default function App() {
           </BrowserRouter>
         </CartProvider>
     </AuthProvider>
-  );
+  )
 }

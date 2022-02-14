@@ -45,7 +45,10 @@ export default function SignIn() {
         <ContainerSignIn>
             <h4>Login</h4>
             <Form onSubmit={handleSubmit}>
+              <div className='wrapperLabel'>
+
               <Label>E-mail</Label>
+              </div>
             <Input
               type="email"
               placeholder="example@email.com"
@@ -55,7 +58,10 @@ export default function SignIn() {
               disabled={isLoading}
               required
             />
+            <div className='wrapperLabel'>
+
             <Label>Password</Label>
+            </div>
             <Input
               type="password"
               placeholder="******"
