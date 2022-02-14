@@ -39,10 +39,14 @@ export default function SignIn() {
     
         
       }
+      function handleNavigation(){
+        navigate("/")
+      }
   
     return (
         <>
         <ContainerSignIn>
+            <h4 onClick={handleNavigation}>Home</h4>
             <h4>Login</h4>
             <Form onSubmit={handleSubmit}>
               <div className='wrapperLabel'>
