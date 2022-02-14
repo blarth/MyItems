@@ -22,7 +22,8 @@ export default function SignUp() {
             alert("Passwords should match")
             return
         }
-        setFormData({...formData, confirmpassword : ""})
+        setFormData({...formData, confirmpassword : "" })
+        delete formData.confirmpassword
         
         try {
             setIsLoading(true);
